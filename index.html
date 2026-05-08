@@ -352,6 +352,21 @@ html, body { height: 100%; overflow: hidden; font-family: 'Satoshi', sans-serif;
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes apBarGrow { from { width:0 !important; } }
 .ap-bar-amt { font-size:10px; font-weight:700; flex:0 0 36px; text-align:right; font-family:'Cabinet Grotesk',sans-serif; }
+
+/* ── Welcome screen ── */
+.gb-welcome { padding: 16px 0 8px; }
+.gb-brand-wrap { text-align: center; padding: 28px 20px 24px; background: linear-gradient(155deg, rgba(0,214,143,0.06) 0%, rgba(41,121,255,0.04) 50%, rgba(124,77,255,0.03) 100%); border: 1px solid rgba(0,214,143,0.15); border-radius: 28px; margin-bottom: 14px; position: relative; overflow: hidden; }
+.gb-brand-glow { position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 300px; height: 200px; background: radial-gradient(ellipse, rgba(0,214,143,0.10) 0%, transparent 70%); pointer-events: none; }
+.gb-logo-svg { width: 100%; max-width: 280px; height: 120px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
+.gb-brand-name { font-family: 'Cabinet Grotesk', sans-serif; font-size: 42px; font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+.gb-brand-green { color: #00d68f; }
+.gb-brand-tagline { font-size: 14px; color: var(--soft); letter-spacing: 0.02em; }
+.gb-feature-list { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 14px; }
+.gb-feature-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.gb-feature-icon { font-size: 20px; width: 38px; height: 38px; border-radius: 12px; background: rgba(0,214,143,0.08); border: 1px solid rgba(0,214,143,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.gb-feature-body { flex: 1; }
+.gb-feature-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.gb-feature-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -377,86 +392,95 @@ html, body { height: 100%; overflow: hidden; font-family: 'Satoshi', sans-serif;
     <!-- SUMMARY -->
     <div class="screen active" id="screen-summary">
       <div id="summary-content">
-        <div class="import-wrap">
+        <div class="gb-welcome">
 
-          <!-- App preview mockup -->
-          <div class="app-preview">
-            <div class="ap-glow"></div>
+          <!-- Greenbar brand graphic -->
+          <div class="gb-brand-wrap">
+            <div class="gb-brand-glow"></div>
+            <svg class="gb-logo-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+              <!-- Animated bar chart -->
+              <rect x="20" y="110" width="28" height="50" rx="6" fill="url(#barGrad1)" opacity="0.9">
+                <animate attributeName="height" values="10;50;50" dur="1s" begin="0s" fill="freeze"/>
+                <animate attributeName="y" values="150;110;110" dur="1s" begin="0s" fill="freeze"/>
+              </rect>
+              <rect x="56" y="80" width="28" height="80" rx="6" fill="url(#barGrad1)" opacity="0.95">
+                <animate attributeName="height" values="10;80;80" dur="1s" begin="0.1s" fill="freeze"/>
+                <animate attributeName="y" values="150;80;80" dur="1s" begin="0.1s" fill="freeze"/>
+              </rect>
+              <rect x="92" y="50" width="28" height="110" rx="6" fill="url(#barGrad1)">
+                <animate attributeName="height" values="10;110;110" dur="1s" begin="0.2s" fill="freeze"/>
+                <animate attributeName="y" values="150;50;50" dur="1s" begin="0.2s" fill="freeze"/>
+              </rect>
+              <rect x="128" y="70" width="28" height="90" rx="6" fill="url(#barGrad2)" opacity="0.85">
+                <animate attributeName="height" values="10;90;90" dur="1s" begin="0.3s" fill="freeze"/>
+                <animate attributeName="y" values="150;70;70" dur="1s" begin="0.3s" fill="freeze"/>
+              </rect>
+              <rect x="164" y="90" width="28" height="70" rx="6" fill="url(#barGrad2)" opacity="0.8">
+                <animate attributeName="height" values="10;70;70" dur="1s" begin="0.4s" fill="freeze"/>
+                <animate attributeName="y" values="150;90;90" dur="1s" begin="0.4s" fill="freeze"/>
+              </rect>
+              <rect x="200" y="60" width="28" height="100" rx="6" fill="url(#barGrad1)" opacity="0.9">
+                <animate attributeName="height" values="10;100;100" dur="1s" begin="0.5s" fill="freeze"/>
+                <animate attributeName="y" values="150;60;60" dur="1s" begin="0.5s" fill="freeze"/>
+              </rect>
+              <rect x="236" y="40" width="28" height="120" rx="6" fill="url(#barGrad1)">
+                <animate attributeName="height" values="10;120;120" dur="1s" begin="0.6s" fill="freeze"/>
+                <animate attributeName="y" values="150;40;40" dur="1s" begin="0.6s" fill="freeze"/>
+              </rect>
+              <!-- Baseline -->
+              <rect x="10" y="161" width="260" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+              <!-- Trend line -->
+              <polyline points="34,110 70,80 106,50 142,70 178,90 214,60 250,40"
+                stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+              <defs>
+                <linearGradient id="barGrad1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#00d68f"/>
+                  <stop offset="100%" stop-color="#00a86b" stop-opacity="0.7"/>
+                </linearGradient>
+                <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#00c9b1"/>
+                  <stop offset="100%" stop-color="#0099a0" stop-opacity="0.7"/>
+                </linearGradient>
+              </defs>
+            </svg>
 
-            <!-- Month pills -->
-            <div class="ap-pills">
-              <div class="ap-pill">Feb</div>
-              <div class="ap-pill">Mar</div>
-              <div class="ap-pill active">Apr</div>
-              <div class="ap-pill">All</div>
-            </div>
-
-            <!-- Net card -->
-            <div class="ap-net-card">
-              <div class="ap-net-glow"></div>
-              <div class="ap-net-pulse"></div>
-              <div class="ap-net-lbl">Monthly net</div>
-              <div class="ap-net-amt">+$772</div>
-              <div class="ap-net-sub">April 2026 · Surplus</div>
-              <div class="ap-ie-row">
-                <div class="ap-ie-tile">
-                  <div class="ap-ie-lbl">Income</div>
-                  <div class="ap-ie-val" style="color:#00d68f">$15,832</div>
-                </div>
-                <div class="ap-ie-tile">
-                  <div class="ap-ie-lbl">Expenses</div>
-                  <div class="ap-ie-val" style="color:#ff4757">$15,060</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Category bars -->
-            <div class="ap-bars-hdr">Top categories</div>
-            <div class="ap-bars-card">
-              <div class="ap-bar-item">
-                <div class="ap-bar-ic" style="background:rgba(0,214,143,0.12)">🏠</div>
-                <div class="ap-bar-name">Mortgage</div>
-                <div class="ap-bar-bg"><div class="ap-bar-fg" style="width:100%;background:#00d68f;animation-delay:0.05s"></div></div>
-                <div class="ap-bar-amt" style="color:#00d68f">$3,161</div>
-              </div>
-              <div class="ap-bar-item">
-                <div class="ap-bar-ic" style="background:rgba(41,121,255,0.12)">💰</div>
-                <div class="ap-bar-name">Loans</div>
-                <div class="ap-bar-bg"><div class="ap-bar-fg" style="width:99%;background:#2979ff;animation-delay:0.1s"></div></div>
-                <div class="ap-bar-amt" style="color:#2979ff">$3,158</div>
-              </div>
-              <div class="ap-bar-item">
-                <div class="ap-bar-ic" style="background:rgba(0,201,177,0.12)">🛒</div>
-                <div class="ap-bar-name">Groceries</div>
-                <div class="ap-bar-bg"><div class="ap-bar-fg" style="width:57%;background:#00c9b1;animation-delay:0.15s"></div></div>
-                <div class="ap-bar-amt" style="color:#00c9b1">$1,815</div>
-              </div>
-              <div class="ap-bar-item">
-                <div class="ap-bar-ic" style="background:rgba(255,165,2,0.12)">🍽</div>
-                <div class="ap-bar-name">Dining</div>
-                <div class="ap-bar-bg"><div class="ap-bar-fg" style="width:29%;background:#ffa502;animation-delay:0.2s"></div></div>
-                <div class="ap-bar-amt" style="color:#ffa502">$905</div>
-              </div>
-              <div class="ap-bar-item" style="border-bottom:none">
-                <div class="ap-bar-ic" style="background:rgba(124,77,255,0.12)">❤️</div>
-                <div class="ap-bar-name">Giving</div>
-                <div class="ap-bar-bg"><div class="ap-bar-fg" style="width:25%;background:#7c4dff;animation-delay:0.25s"></div></div>
-                <div class="ap-bar-amt" style="color:#7c4dff">$791</div>
-              </div>
-            </div>
-
-            <!-- Import CTA -->
-            <button class="btn-primary" style="margin:0 0 4px;background:linear-gradient(135deg,#00d68f,#00c9b1);box-shadow:0 6px 28px rgba(0,214,143,0.35);" onclick="viewInsights()">✦ &nbsp;View Insights</button>
+            <div class="gb-brand-name"><span class="gb-brand-green">Green</span>bar</div>
+            <div class="gb-brand-tagline">Your money, clearly.</div>
           </div>
 
-          <!-- Feature pills -->
-          <div class="g-card rules-card">
-            <div class="rules-title">Works With Any Bank</div>
-            <div class="rule-item"><span class="rule-pill">AUTO</span><span class="rule-text">Detects columns from any CSV format</span></div>
-            <div class="rule-item"><span class="rule-pill">RULES</span><span class="rule-text">Reclassify any merchant to the right category</span></div>
-            <div class="rule-item"><span class="rule-pill">BUDGET</span><span class="rule-text">Set your own monthly targets in Settings</span></div>
-            <div class="rule-item"><span class="rule-pill">PRIVATE</span><span class="rule-text">Data never leaves your device</span></div>
+          <!-- Feature list -->
+          <div class="gb-feature-list">
+            <div class="gb-feature-item">
+              <div class="gb-feature-icon">📊</div>
+              <div class="gb-feature-body">
+                <div class="gb-feature-title">Instant spending breakdown</div>
+                <div class="gb-feature-desc">See exactly where your money goes, by category and vendor</div>
+              </div>
+            </div>
+            <div class="gb-feature-item">
+              <div class="gb-feature-icon">🎯</div>
+              <div class="gb-feature-body">
+                <div class="gb-feature-title">Budget vs actual tracking</div>
+                <div class="gb-feature-desc">Set monthly targets and track variance in real time</div>
+              </div>
+            </div>
+            <div class="gb-feature-item">
+              <div class="gb-feature-icon">✦</div>
+              <div class="gb-feature-body">
+                <div class="gb-feature-title">Smart insights per category</div>
+                <div class="gb-feature-desc">Trends, top vendors, and observations automatically generated</div>
+              </div>
+            </div>
+            <div class="gb-feature-item" style="border-bottom:none">
+              <div class="gb-feature-icon">🔒</div>
+              <div class="gb-feature-body">
+                <div class="gb-feature-title">100% private</div>
+                <div class="gb-feature-desc">Your data never leaves your device — ever</div>
+              </div>
+            </div>
           </div>
+
+          <button class="btn-primary" onclick="document.getElementById('csv-input').click()">⬆ &nbsp;Import Transactions to Get Started</button>
         </div>
       </div>
     </div>
@@ -979,46 +1003,66 @@ function renderSummary(){
   const net=m.income-expTotal;
   const cats=Object.entries(m.expenses).sort((a,b)=>b[1]-a[1]);
   const maxAmt=cats[0]?.[1]||1;
-
   const pills=keys.map(k=>`<div class="pill ${k===_sel?'active':''}" onclick="selMonth('${k}')">${k}</div>`).join('')
     +`<div class="pill ${_sel==='__all'?'active':''}" onclick="selMonth('__all')">All</div>`;
 
   document.getElementById('summary-content').innerHTML=`
-    <div class="pills-row">${pills}</div>
-    <div class="net-card">
-      <div class="pulse"></div>
-      <div class="net-lbl">Monthly Net</div>
-      <div class="net-amt ${net>=0?'surplus':'deficit'}">${net>=0?'+':''}${fmt(net)}</div>
-      <div class="net-mo">${_sel}</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-tile"><div class="st-lbl">Income</div><div class="st-val c-green">${fmt(m.income)}</div></div>
-      <div class="stat-tile"><div class="st-lbl">Expenses</div><div class="st-val c-red">${fmt(expTotal)}</div></div>
-      <div class="stat-tile"><div class="st-lbl">Txs</div><div class="st-val c-teal">${m.txs.length}</div></div>
-    </div>
-    <div class="sec-hdr">Top Categories <span class="sec-total">${fmt(expTotal)}</span></div>
-    <div class="cat-list">
-      ${cats.slice(0,14).map(([cat,avg],i)=>`
+    <div class="gb-welcome">
+      <div class="gb-brand-wrap">
+        <div class="gb-brand-glow"></div>
+        <svg class="gb-logo-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="110" width="28" height="50" rx="6" fill="url(#bg1a)" opacity="0.9"/>
+          <rect x="56" y="80" width="28" height="80" rx="6" fill="url(#bg1a)" opacity="0.95"/>
+          <rect x="92" y="50" width="28" height="110" rx="6" fill="url(#bg1a)"/>
+          <rect x="128" y="70" width="28" height="90" rx="6" fill="url(#bg2a)" opacity="0.85"/>
+          <rect x="164" y="90" width="28" height="70" rx="6" fill="url(#bg2a)" opacity="0.8"/>
+          <rect x="200" y="60" width="28" height="100" rx="6" fill="url(#bg1a)" opacity="0.9"/>
+          <rect x="236" y="40" width="28" height="120" rx="6" fill="url(#bg1a)"/>
+          <rect x="10" y="161" width="260" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+          <polyline points="34,110 70,80 106,50 142,70 178,90 214,60 250,40" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+          <defs>
+            <linearGradient id="bg1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d68f"/><stop offset="100%" stop-color="#00a86b" stop-opacity="0.7"/></linearGradient>
+            <linearGradient id="bg2a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00c9b1"/><stop offset="100%" stop-color="#0099a0" stop-opacity="0.7"/></linearGradient>
+          </defs>
+        </svg>
+        <div class="gb-brand-name"><span class="gb-brand-green">Green</span>bar</div>
+        <div class="gb-brand-tagline">Your money, clearly.</div>
+      </div>
+      <div class="pills-row" style="margin-bottom:12px;">${pills}</div>
+      <div class="net-card" style="margin-bottom:12px;">
+        <div class="pulse"></div>
+        <div class="net-lbl">Monthly Net</div>
+        <div class="net-amt ${net>=0?'surplus':'deficit'}">${net>=0?'+':''}${fmt(net)}</div>
+        <div class="net-mo">${_sel}</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile"><div class="st-lbl">Income</div><div class="st-val c-green">${fmt(m.income)}</div></div>
+        <div class="stat-tile"><div class="st-lbl">Expenses</div><div class="st-val c-red">${fmt(expTotal)}</div></div>
+        <div class="stat-tile"><div class="st-lbl">Txs</div><div class="st-val c-teal">${m.txs.length}</div></div>
+      </div>
+      <div class="sec-hdr">Top Categories <span class="sec-total">${fmt(expTotal)}</span></div>
+      <div class="cat-list">
+        ${cats.slice(0,8).map(([cat,amt],i)=>`
         <div class="cat-item" style="flex-direction:column;align-items:stretch;gap:8px;">
           <div style="display:flex;align-items:center;gap:12px;">
             <div class="cat-icon" style="background:${PAL[i%15]}18">${EMO[cat]||'•'}</div>
             <div class="cat-body">
               <div class="cat-name">${cat}</div>
-              <div class="cat-bar-bg"><div class="cat-bar-fg" style="width:${Math.round(avg/maxAvg*100)}%;background:${PAL[i%15]}"></div></div>
+              <div class="cat-bar-bg"><div class="cat-bar-fg" style="width:${Math.round(amt/maxAmt*100)}%;background:${PAL[i%15]}"></div></div>
             </div>
             <div class="cat-right">
-              <div class="cat-amt">${fmt(avg)}/mo</div>
-              <div class="cat-pct">${(avg/(totalExp/n)*100).toFixed(1)}%</div>
+              <div class="cat-amt">${fmt(amt)}</div>
+              <div class="cat-pct">${(amt/expTotal*100).toFixed(1)}%</div>
             </div>
           </div>
           <div style="display:flex;gap:8px;">
-            <button onclick="showVendorDrill(this.dataset.cat)" data-cat="${cat.replace(/"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:var(--soft);font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;letter-spacing:0.03em;">📋 Transactions</button>
-            <button onclick="showCatInsights(this.dataset.cat)" data-cat="${cat.replace(/"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(0,214,143,0.25);background:rgba(0,214,143,0.08);color:#00d68f;font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;letter-spacing:0.03em;">✦ Insights</button>
+            <button onclick="showVendorDrill(this.dataset.cat)" data-cat="${cat.replace(/\"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:var(--soft);font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;">📋 Transactions</button>
+            <button onclick="showCatInsights(this.dataset.cat)" data-cat="${cat.replace(/\"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(0,214,143,0.25);background:rgba(0,214,143,0.08);color:#00d68f;font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;">✦ Insights</button>
           </div>
-        </div>`).join('')}
+        </div>`).join('')}}
+      </div>
     </div>`;
 }
-
 function selMonth(mk){
   _sel=mk;
   if(mk==='__all')renderSummaryAll();
@@ -1034,22 +1078,45 @@ function renderSummaryAll(){
   const n=keys.length;
   const cats=Object.entries(allCats).map(([c,t])=>([c,t/n])).sort((a,b)=>b[1]-a[1]);
   const maxAvg=cats[0]?.[1]||1;
+
   document.getElementById('summary-content').innerHTML=`
-    <div class="pills-row">${pills}</div>
-    <div class="net-card">
-      <div class="pulse"></div>
-      <div class="net-lbl">Total Net — ${n} Months</div>
-      <div class="net-amt ${totalInc>=totalExp?'surplus':'deficit'}">${totalInc>=totalExp?'+':''}${fmt(totalInc-totalExp)}</div>
-      <div class="net-mo">Avg ${fmt((totalInc-totalExp)/n)}/mo</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-tile"><div class="st-lbl">Total Inc</div><div class="st-val c-green">${fmt(totalInc)}</div></div>
-      <div class="stat-tile"><div class="st-lbl">Total Exp</div><div class="st-val c-red">${fmt(totalExp)}</div></div>
-      <div class="stat-tile"><div class="st-lbl">Months</div><div class="st-val c-teal">${n}</div></div>
-    </div>
-    <div class="sec-hdr">Avg Monthly Spend <span class="sec-total">${fmt(totalExp/n)}/mo</span></div>
-    <div class="cat-list">
-      ${cats.slice(0,14).map(([cat,avg],i)=>`
+    <div class="gb-welcome">
+      <div class="gb-brand-wrap">
+        <div class="gb-brand-glow"></div>
+        <svg class="gb-logo-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="110" width="28" height="50" rx="6" fill="url(#barGrad1b)" opacity="0.9"/>
+          <rect x="56" y="80" width="28" height="80" rx="6" fill="url(#barGrad1b)" opacity="0.95"/>
+          <rect x="92" y="50" width="28" height="110" rx="6" fill="url(#barGrad1b)"/>
+          <rect x="128" y="70" width="28" height="90" rx="6" fill="url(#barGrad2b)" opacity="0.85"/>
+          <rect x="164" y="90" width="28" height="70" rx="6" fill="url(#barGrad2b)" opacity="0.8"/>
+          <rect x="200" y="60" width="28" height="100" rx="6" fill="url(#barGrad1b)" opacity="0.9"/>
+          <rect x="236" y="40" width="28" height="120" rx="6" fill="url(#barGrad1b)"/>
+          <rect x="10" y="161" width="260" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+          <polyline points="34,110 70,80 106,50 142,70 178,90 214,60 250,40" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+          <defs>
+            <linearGradient id="barGrad1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d68f"/><stop offset="100%" stop-color="#00a86b" stop-opacity="0.7"/></linearGradient>
+            <linearGradient id="barGrad2b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00c9b1"/><stop offset="100%" stop-color="#0099a0" stop-opacity="0.7"/></linearGradient>
+          </defs>
+        </svg>
+        <div class="gb-brand-name"><span class="gb-brand-green">Green</span>bar</div>
+        <div class="gb-brand-tagline">Your money, clearly.</div>
+      </div>
+
+      <div class="pills-row" style="margin-bottom:12px;">${pills}</div>
+      <div class="net-card" style="margin-bottom:12px;">
+        <div class="pulse"></div>
+        <div class="net-lbl">Total Net — ${n} Months</div>
+        <div class="net-amt ${totalInc>=totalExp?'surplus':'deficit'}">${totalInc>=totalExp?'+':''}${fmt(totalInc-totalExp)}</div>
+        <div class="net-mo">Avg ${fmt((totalInc-totalExp)/n)}/mo</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile"><div class="st-lbl">Total Inc</div><div class="st-val c-green">${fmt(totalInc)}</div></div>
+        <div class="stat-tile"><div class="st-lbl">Total Exp</div><div class="st-val c-red">${fmt(totalExp)}</div></div>
+        <div class="stat-tile"><div class="st-lbl">Months</div><div class="st-val c-teal">${n}</div></div>
+      </div>
+      <div class="sec-hdr">Avg Monthly Spend <span class="sec-total">${fmt(totalExp/n)}/mo</span></div>
+      <div class="cat-list">
+        ${cats.slice(0,8).map(([cat,avg],i)=>`
         <div class="cat-item" style="flex-direction:column;align-items:stretch;gap:8px;">
           <div style="display:flex;align-items:center;gap:12px;">
             <div class="cat-icon" style="background:${PAL[i%15]}18">${EMO[cat]||'•'}</div>
@@ -1066,7 +1133,8 @@ function renderSummaryAll(){
             <button onclick="showVendorDrill(this.dataset.cat)" data-cat="${cat.replace(/"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:var(--soft);font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;">📋 Transactions</button>
             <button onclick="showCatInsights(this.dataset.cat)" data-cat="${cat.replace(/"/g,'&quot;')}" style="flex:1;padding:7px 0;border-radius:10px;border:1px solid rgba(0,214,143,0.25);background:rgba(0,214,143,0.08);color:#00d68f;font-size:11px;font-weight:600;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;">✦ Insights</button>
           </div>
-        </div>`).join('')}
+        </div>`).join('')}}
+      </div>
     </div>`;
 }
 
